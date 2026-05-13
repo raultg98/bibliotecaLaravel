@@ -17,48 +17,21 @@ class UserController extends Controller
         
         $usuarios = User::all();
         
-        return view('usuarios', [
-            "usuarios" => $usuarios
-        ]);
-    }
-
-    public function crear (){
-        return view('usuarios_crear');
+        return view('usuarios.index', [ "usuarios" => $usuarios ]);
     }
 
     public function buscar($id){
         
         $usuario = User::find($id);
         
-        return view('usuario', [
-            "usuario" => $usuario
-        ]);
+        return view('usuarios.show', ["usuario" => $usuario]);
     }
 
     public function buscarEditar ($id){
         
         $usuario = User::findOrFail($id);
         
-        return view('usuario_editar', [
-            "usuario" => $usuario
-        ]);
-    }
-
-    public function almacenar(StoreRequest $request){
-        
-        /*$request->validate([
-            "name" => "required|min:5|max:10",
-            "email" => "required|email|unique:users,email",
-            "password" => "required|min:4"
-        ]);*/
-
-        User::create([
-            "name" => $request->name,
-            "email" => $request->email,
-            "password" => bcrypt($request->password)
-        ]);
-
-        return redirect('/usuarios');
+        return view('usuarios.editar', ["usuario" => $usuario]);
     }
 
     public function borrar($id){
@@ -69,12 +42,6 @@ class UserController extends Controller
 
     public function modificar (UpdateRequest $request, $id){
         $usuario = User::findOrFail($id);
-
-        // $request->validate([
-        //     "name" => "required|min:5|max:10",
-        //     "email" => "required|email|unique:users,email," . $id,
-        //     "password" => "nullable|min:4"
-        // ]);
 
         $usuario->name = $request->name;
         $usuario->email = $request->email;

@@ -18,6 +18,9 @@
                     <x-nav-link :href="'/libros'" :active="request()->is('libros*')">
                         {{ __('Libros') }}
                     </x-nav-link>
+                    <x-nav-link :href="'/usuarios'" :active="request()->is('usuarios*')">
+                        {{ __('Usuarios') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -75,6 +78,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="'/libros'" :active="request()->is('libros*')">
                 {{ __('Libros') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="'/usuarios'" :active="request()->is('usuarios*')">
+                {{ __('Usuarios') }}
             </x-responsive-nav-link>
         </div>
 

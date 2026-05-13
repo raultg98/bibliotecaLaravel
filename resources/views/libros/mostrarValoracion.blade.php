@@ -15,9 +15,11 @@
                 <p><strong>Comentario:</strong> {{ $valoracion->comentario }}</p>
                 <p><strong>Fecha:</strong> {{ $valoracion->created_at->format('d/m/Y') }}</p>
 
-                <a href="/libros/{{ $valoracion->libro_id }}" class="text-blue-600 underline">
-                    Volver al libro
-                </a>
+                <div class="mt-4">
+                    <a href="/libros/{{ $valoracion->libro_id }}" class="bg-gray-600 text-white px-4 py-2 rounded">
+                        Volver al libro
+                    </a>
+                </div>
 
             </div>
         </div>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="">
+        <h2 class="text-xl text-gray-800">
             Valorar: {{ $libro->titulo }}
         </h2>
     </x-slot>

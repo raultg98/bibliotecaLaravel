@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Listado de libros
+            Listado de usuarios
         </h2>
     </x-slot>
 
@@ -9,22 +9,20 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="bg-white shadow-sm rounded-lg p-6">
 
-                <a href="/libros/crear" class="bg-blue-600 text-white px-4 py-2 rounded inline-block mb-6">
-                    Crear libro
-                </a>
+                @auth
+                    <p class="mb-4">Hola, {{ Auth::user()->name }}</p>
+                @endauth
 
                 <ul class="space-y-3">
-                    @foreach ($libros as $libro)
+                    @foreach ($usuarios as $usuario)
                         <li class="flex items-center justify-between border-b pb-2">
                             <span>
-                                <a href="/libros/{{ $libro->id }}" class="text-blue-600 underline">{{ $libro->titulo }}</a>
-                                — {{ $libro->autor }} ({{ $libro->anio }}) — {{ $libro->precio }}€
+                                {{ $usuario->name }} - {{ $usuario->email }}
                             </span>
-
                             <div class="flex gap-2 ml-4 shrink-0">
-                                <a href="/libros/{{ $libro->id }}" class="bg-gray-600 text-white px-3 py-1 rounded text-sm">Ver</a>
-                                <a href="/libros/{{ $libro->id }}/editar" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
-                                <form action="/libros/{{ $libro->id }}" method="POST" style="display:inline;">
+                                <a href="/usuarios/{{ $usuario->id }}" class="bg-gray-600 text-white px-3 py-1 rounded text-sm">Ver</a>
+                                <a href="/usuarios/{{ $usuario->id }}/editar" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Editar</a>
+                                <form action="/usuarios/{{ $usuario->id }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded text-sm">Borrar</button>
@@ -33,6 +31,11 @@
                         </li>
                     @endforeach
                 </ul>
+
+                <form method="POST" action="{{ route('logout') }}" class="mt-6">
+                    @csrf
+                    <button type="submit" class="bg-gray-800 text-white px-4 py-2 rounded">Cerrar sesión</button>
+                </form>
 
             </div>
         </div>

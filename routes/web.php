@@ -40,10 +40,14 @@ Route::middleware("auth")->group(function(){
 
     // Rutas de los libros
     Route::get("/libros", [LibroController::class, "index"]);
+    Route::get("/libros/crear", [LibroController::class, "crear"]);
     Route::get("/libros/{id}", [LibroController::class, "show"]);
+    Route::get("/libros/{id}/editar", [LibroController::class, "editar"]);
     Route::get("/libros/{id}/valorar", [LibroController::class, "crearValoracion"]);
-    Route::get("/libros/{libro_id}/valoraciones/{id}", [LibroController::class, "mostrarValoracion"]);
-
+    Route::post("/libros", [LibroController::class, "almacenar"]);
     Route::post("/libros/{id}/valorar", [LibroController::class, "almacenarValoracion"]);
+    Route::put("/libros/{id}", [LibroController::class, "modificar"]);
+    Route::delete("/libros/{id}", [LibroController::class, "borrar"]);
+    Route::get("/libros/{libro_id}/valoraciones/{id}", [LibroController::class, "mostrarValoracion"]);
 
 });
